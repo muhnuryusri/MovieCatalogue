@@ -78,10 +78,8 @@ object DataDummy {
         )
     }
 
-    fun getMovieCast(): CastDataEntity {
-        return CastDataEntity(
-                567189,
-                arrayListOf(
+    fun getMovieCast(): List<CastEntity> {
+        return listOf(
                         CastEntity(
                                 135651,
                                 "Michael B. Jordan",
@@ -100,7 +98,6 @@ object DataDummy {
                                 "Pam Kelly",
                                 "/vfUJtwfux3nwEGWIbrC20LyH8fn.jpg"
                         )
-                )
         )
     }
 
