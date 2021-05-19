@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MovieCatalogue</string>
+    <string name="title">Title</string>
+    <string name="release">Release</string>
+    <string name="bullet">•</string>
+    <string name="score">0</string>
+    <string name="duration">0h 0m</string>
+    <string name="genre_text">Genre</string>
+    <string name="genre">Genre</string>
+    <string name="overview_text">Overview</string>
+    <string name="overview">Overview</string>
+    <string name="featured_cast_text">Featured Cast</string>
+    <string name="movie_text">Movie</string>
+    <string name="tvShow_text">TV Show</string>
+    <string name="cast_name">Name</string>
+    <string name="cast_character">Character</string>
+</resources>
