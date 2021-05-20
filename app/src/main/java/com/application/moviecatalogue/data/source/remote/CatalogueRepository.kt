@@ -2,10 +2,7 @@ package com.application.moviecatalogue.data.source.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.application.moviecatalogue.data.source.local.entity.CastEntity
-import com.application.moviecatalogue.data.source.local.entity.DataEntity
-import com.application.moviecatalogue.data.source.local.entity.MovieDetailEntity
-import com.application.moviecatalogue.data.source.local.entity.TvShowDetailEntity
+import com.application.moviecatalogue.data.source.local.entity.*
 import com.application.moviecatalogue.data.source.remote.response.*
 import com.application.moviecatalogue.data.source.remote.response.RemoteDataSource
 
@@ -153,8 +150,8 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
                 if (casts != null) {
                     for (response in casts) {
                         with(response) {
-                            val movieCast = CastEntity(id, name, character, profilePath)
-                            tvShowCastList.add(movieCast)
+                            val tvShowCast = CastEntity(id, name, character, profilePath)
+                            tvShowCastList.add(tvShowCast)
                         }
                     }
                     tvShowCastItems.postValue(tvShowCastList)
