@@ -1,7 +1,10 @@
-package com.application.moviecatalogue.data.source.remote.response
+package com.application.moviecatalogue.data.source.remote
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.application.moviecatalogue.BuildConfig.API_KEY
+import com.application.moviecatalogue.data.source.remote.response.*
 import com.application.moviecatalogue.data.source.remote.response.api.ApiConfig
 import com.application.moviecatalogue.utils.EspressoIdlingResource
 import retrofit2.Call
@@ -19,12 +22,13 @@ class RemoteDataSource {
             }
     }
 
-    fun getMovies(callback: LoadMoviesCallback) {
+    fun getMovies(): LiveData<ApiResponse<List<MovieResultsItem>>> {
         EspressoIdlingResource.increment()
+        val resultMovies = MutableLiveData<ApiResponse<List<MovieResultsItem>>>()
         val client = ApiConfig.getApiService().getMovies(API_KEY)
         client.enqueue(object : Callback<MovieResponse> {
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                callback.onMoviesLoaded(response.body()?.results)
+                resultMovies.value = ApiResponse.success(response.body()?.results as List<MovieResultsItem>)
                 EspressoIdlingResource.decrement()
             }
 
@@ -33,14 +37,16 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+        return resultMovies
     }
 
-    fun getDetailMovie(callback: LoadDetailMovieCallback, movieId: Int) {
+    fun getDetailMovie(movieId: Int): LiveData<ApiResponse<MovieDetailResponse>> {
         EspressoIdlingResource.increment()
+        val resultMovies = MutableLiveData<ApiResponse<MovieDetailResponse>>()
         val client = ApiConfig.getApiService().getMovieDetail(movieId, API_KEY)
         client.enqueue(object : Callback<MovieDetailResponse> {
             override fun onResponse(call: Call<MovieDetailResponse>, response: Response<MovieDetailResponse>) {
-                callback.onDetailMovieLoaded(response.body())
+                resultMovies.value = ApiResponse.success(response.body() as MovieDetailResponse)
                 EspressoIdlingResource.decrement()
             }
 
@@ -49,14 +55,16 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+        return resultMovies
     }
 
-    fun getTvShows(callback: LoadTvShowsCallback) {
+    fun getTvShows(): LiveData<ApiResponse<List<TvShowResultsItem>>> {
         EspressoIdlingResource.increment()
+        val resultTvShows = MutableLiveData<ApiResponse<List<TvShowResultsItem>>>()
         val client = ApiConfig.getApiService().getTvShows(API_KEY)
         client.enqueue(object : Callback<TvShowResponse> {
             override fun onResponse(call: Call<TvShowResponse>, response: Response<TvShowResponse>) {
-                callback.onTvShowsLoaded(response.body()?.results)
+                resultTvShows.value = ApiResponse.success(response.body()?.results as List<TvShowResultsItem>)
                 EspressoIdlingResource.decrement()
             }
 
@@ -65,14 +73,16 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+        return resultTvShows
     }
 
-    fun getDetailTvShow(callback: LoadDetailTvShowCallback, tvShowId: Int) {
+    fun getDetailTvShow(tvShowId: Int): LiveData<ApiResponse<TvShowDetailResponse>> {
         EspressoIdlingResource.increment()
+        val resultTvShows = MutableLiveData<ApiResponse<TvShowDetailResponse>>()
         val client = ApiConfig.getApiService().getTvShowDetail(tvShowId, API_KEY)
         client.enqueue(object : Callback<TvShowDetailResponse> {
             override fun onResponse(call: Call<TvShowDetailResponse>, response: Response<TvShowDetailResponse>) {
-                callback.onDetailTvShowLoaded(response.body())
+                resultTvShows.value = ApiResponse.success(response.body() as TvShowDetailResponse)
                 EspressoIdlingResource.decrement()
             }
 
@@ -81,14 +91,16 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+        return resultTvShows
     }
 
-    fun getMovieCast(callback: LoadCastCallback, movieCastId: Int) {
+    fun getMovieCast(movieCastId: Int): LiveData<ApiResponse<List<CastItem>>> {
         EspressoIdlingResource.increment()
+        val resultMovieCast = MutableLiveData<ApiResponse<List<CastItem>>>()
         val client = ApiConfig.getApiService().getMovieCast(movieCastId, API_KEY)
         client.enqueue(object : Callback<CastResponse> {
             override fun onResponse(call: Call<CastResponse>, response: Response<CastResponse>) {
-                callback.onCastLoaded(response.body()?.cast)
+                resultMovieCast.value = ApiResponse.success(response.body()?.cast as List<CastItem>)
                 EspressoIdlingResource.decrement()
             }
 
@@ -97,14 +109,16 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+        return resultMovieCast
     }
 
-    fun getTvShowCast(callback: LoadCastCallback, tvShowCastId: Int) {
+    fun getTvShowCast(tvShowCastId: Int): LiveData<ApiResponse<List<CastItem>>> {
         EspressoIdlingResource.increment()
+        val resultTvShowCast = MutableLiveData<ApiResponse<List<CastItem>>>()
         val client = ApiConfig.getApiService().getTvShowCast(tvShowCastId, API_KEY)
         client.enqueue(object : Callback<CastResponse> {
             override fun onResponse(call: Call<CastResponse>, response: Response<CastResponse>) {
-                callback.onCastLoaded(response.body()?.cast)
+                resultTvShowCast.value = ApiResponse.success(response.body()?.cast as List<CastItem>)
                 EspressoIdlingResource.decrement()
             }
 
@@ -113,26 +127,6 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
-    }
-
-
-    interface LoadMoviesCallback {
-        fun onMoviesLoaded(movies : List<MovieResultsItem>?)
-    }
-
-    interface LoadDetailMovieCallback {
-        fun onDetailMovieLoaded(movieDetail : MovieDetailResponse?)
-    }
-
-    interface LoadTvShowsCallback {
-        fun onTvShowsLoaded(tvShows : List<TvShowResultsItem>?)
-    }
-
-    interface LoadDetailTvShowCallback {
-        fun onDetailTvShowLoaded(tvShowDetail: TvShowDetailResponse?)
-    }
-
-    interface LoadCastCallback {
-        fun onCastLoaded(casts: List<CastItem>?)
+        return resultTvShowCast
     }
 }

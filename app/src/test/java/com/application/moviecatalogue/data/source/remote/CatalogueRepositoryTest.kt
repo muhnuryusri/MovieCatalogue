@@ -1,7 +1,6 @@
 package com.application.moviecatalogue.data.source.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.application.moviecatalogue.data.source.remote.response.RemoteDataSource
 import com.application.moviecatalogue.utils.DataDummy
 import com.application.moviecatalogue.utils.LiveDataTestUtil
 import com.nhaarman.mockitokotlin2.any

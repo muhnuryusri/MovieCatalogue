@@ -3,8 +3,8 @@ package com.application.moviecatalogue.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.application.moviecatalogue.data.source.local.entity.DataEntity
-import com.application.moviecatalogue.data.source.remote.CatalogueRepository
+import com.application.moviecatalogue.data.source.local.entity.MovieEntity
+import com.application.moviecatalogue.data.CatalogueRepository
 import com.application.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
@@ -27,7 +27,7 @@ class TvShowViewModelTest {
     private lateinit var tvShowCatalogueRepository: CatalogueRepository
 
     @Mock
-    private lateinit var observer: Observer<List<DataEntity>>
+    private lateinit var observer: Observer<List<MovieEntity>>
 
     @Before
     fun setUp() {
@@ -37,7 +37,7 @@ class TvShowViewModelTest {
     @Test
     fun getListTvShows() {
         val dummyTvShow = DataDummy.getTvShows()
-        val tvShows = MutableLiveData<List<DataEntity>>()
+        val tvShows = MutableLiveData<List<MovieEntity>>()
         tvShows.value = dummyTvShow
 
         `when`(tvShowCatalogueRepository.getTvShows()).thenReturn(tvShows)

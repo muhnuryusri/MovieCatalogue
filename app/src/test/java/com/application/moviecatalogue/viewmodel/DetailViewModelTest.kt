@@ -3,9 +3,7 @@ package com.application.moviecatalogue.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.application.moviecatalogue.data.source.local.entity.MovieDetailEntity
-import com.application.moviecatalogue.data.source.local.entity.TvShowDetailEntity
-import com.application.moviecatalogue.data.source.remote.CatalogueRepository
+import com.application.moviecatalogue.data.CatalogueRepository
 import com.application.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
@@ -15,7 +13,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 

@@ -4,109 +4,103 @@ import com.application.moviecatalogue.data.source.local.entity.*
 import com.application.moviecatalogue.data.source.remote.response.*
 
 object DataDummy {
-    fun getMovies(): List<DataEntity> {
+    fun getMovies(): List<MovieEntity> {
         return listOf(
-                DataEntity(
-                567189,
-                "Tom Clancy's Without Remorse",
-                7.3,
-                "/rEm96ib0sPiZBADNKBHKBv5bve9.jpg"
+                MovieEntity(
+                        567189,
+                        "Tom Clancy's Without Remorse",
+                        "2021-04-29",
+                        109,
+                        7.3,
+                        "Action", "Adventure", "Thriller", "War",
+                        true
                 ),
-                DataEntity(
-                804435,
-                "Vanquish",
-                6.4,
-                "/AoWY1gkcNzabh229Icboa1Ff0BM.jpg"
+                MovieEntity(
+                        567189,
+                        "Tom Clancy's Without Remorse",
+                        "2021-04-29",
+                        109,
+                        7.3,
+                        "Action", "Adventure", "Thriller", "War",
+                        true
                 ),
-                DataEntity(
-                460465,
-                "Mortal Kombat",
-                7.7,
-                "/xGuOF1T3WmPsAcQEQJfnG7Ud9f8.jpg"
+                MovieEntity(
+                        567189,
+                        "Tom Clancy's Without Remorse",
+                        "2021-04-29",
+                        109,
+                        7.3,
+                        "Action", "Adventure", "Thriller", "War",
+                        true
                 )
         )
     }
 
-    fun getDetailMovie(): MovieDetailEntity {
-        return MovieDetailEntity(
+    fun getDetailMovie(): MovieEntity {
+        return MovieEntity(
                 567189,
                 "Tom Clancy's Without Remorse",
                 "2021-04-29",
                 109,
                 7.3,
-                listOf("Action", "Adventure", "Thriller", "War"),
-                "An elite Navy SEAL uncovers an international conspiracy while seeking justice for the murder of his pregnant wife.",
-                "/rEm96ib0sPiZBADNKBHKBv5bve9.jpg",
-                "/fPGeS6jgdLovQAKunNHX8l0avCy.jpg"
+                "Action", "Adventure", "Thriller", "War",
+                true
         )
     }
 
-    fun getTvShows(): List<DataEntity> {
+    fun getTvShows(): List<MovieEntity> {
         return listOf(
-                DataEntity(
+                MovieEntity(
                         88396,
                         "The Falcon and the Winter Soldier",
+                        "2021-04-23",
+                        6,
                         7.9,
-                        "/6kbAMLteGO8yyewYau6bJ683sw7.jpg"
+                        "Sci-Fi & Fantasy",
+                        "Lorem ipsum dolor sit amet",
+                        "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                        "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                        true
                 ),
-                DataEntity(
-                        60735,
-                        "The Flash",
-                        7.7,
-                        "/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg"
+                MovieEntity(
+                        88396,
+                        "The Falcon and the Winter Soldier",
+                        "2021-04-23",
+                        6,
+                        7.9,
+                        "Sci-Fi & Fantasy",
+                        "Lorem ipsum dolor sit amet",
+                        "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                        "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                        true
                 ),
-                DataEntity(
-                        71712,
-                        "The Good Doctor",
-                        8.6,
-                        "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg"
+                MovieEntity(
+                        88396,
+                        "The Falcon and the Winter Soldier",
+                        "2021-04-23",
+                        6,
+                        7.9,
+                        "Sci-Fi & Fantasy",
+                        "Lorem ipsum dolor sit amet",
+                        "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                        "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                        true
                 )
         )
     }
 
-    fun getDetailTvShow(): TvShowDetailEntity {
-        return TvShowDetailEntity(
+    fun getDetailTvShow(): TvShowEntity {
+        return TvShowEntity(
                 88396,
                 "The Falcon and the Winter Soldier",
                 "2021-04-23",
                 "6",
                 7.9,
-                listOf("Sci-Fi & Fantasy", "Action & Adventure", "Drama", "War & Politics"),
-                "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
+                "Sci-Fi & Fantasy",
+                "Lorem ipsum dolor sit amet",
                 "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
-                "/b0WmHGc8LHTdGCVzxRb3IBMur57.jpg"
-        )
-    }
-
-    fun getMovieCast(): List<CastEntity> {
-        return listOf(
-                        CastEntity(
-                                135651,
-                                "Michael B. Jordan",
-                                "John Kelly",
-                                "/kfcn0yyEdN2aJfVaxW0NIoKVF4J.jpg"
-                        ),
-                        CastEntity(
-                                478,
-                                "Jamie Bell",
-                                "Robert Ritter",
-                                "/xAfNYOJYOy5ee9PHbBF8Y6xzZ9I.jpg"
-                        ),
-                        CastEntity(
-                                98772,
-                                "Lauren London",
-                                "Pam Kelly",
-                                "/vfUJtwfux3nwEGWIbrC20LyH8fn.jpg"
-                        )
-        )
-    }
-
-    fun getTvShowCast(): CastEntity {
-        return CastEntity(
-                53650,
-                "Anthony Mickie",
-                "Sam Wilson / Falcon",
-                "/eZSIDrtTzhvabyjrmIITQLsjx8h.jpg"
+                "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                true
         )
     }
 

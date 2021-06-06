@@ -2,23 +2,22 @@ package com.application.moviecatalogue.data.source.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.application.moviecatalogue.data.source.local.entity.CastEntity
-import com.application.moviecatalogue.data.source.local.entity.DataEntity
-import com.application.moviecatalogue.data.source.local.entity.MovieDetailEntity
-import com.application.moviecatalogue.data.source.local.entity.TvShowDetailEntity
+import com.application.moviecatalogue.data.CatalogueDataSource
+import com.application.moviecatalogue.data.source.local.entity.MovieEntity
 import com.application.moviecatalogue.data.source.remote.response.*
 
-class FakeCatalogueRepository (private val remoteDataSource: RemoteDataSource) : CatalogueDataSource{
-    override fun getMovies(): LiveData<List<DataEntity>> {
-        val movieItems = MutableLiveData<List<DataEntity>>()
+class FakeCatalogueRepository (private val remoteDataSource: RemoteDataSource) :
+    CatalogueDataSource {
+    override fun getMovies(): LiveData<List<MovieEntity>> {
+        val movieItems = MutableLiveData<List<MovieEntity>>()
 
         remoteDataSource.getMovies(object : RemoteDataSource.LoadMoviesCallback {
             override fun onMoviesLoaded(movies: List<MovieResultsItem>?) {
-                val movieList = ArrayList<DataEntity>()
+                val movieList = ArrayList<MovieEntity>()
                 if (movies != null) {
                     for (response in movies) {
                         with(response) {
-                            val movie = DataEntity(id, title, voteAverage, posterPath)
+                            val movie = MovieEntity(id, title, voteAverage, posterPath)
                             movieList.add(movie)
                         }
                     }
@@ -61,16 +60,16 @@ class FakeCatalogueRepository (private val remoteDataSource: RemoteDataSource) :
         return movieDetailItems
     }
 
-    override fun getTvShows(): LiveData<List<DataEntity>> {
-        val tvShowItems = MutableLiveData<List<DataEntity>>()
+    override fun getTvShows(): LiveData<List<MovieEntity>> {
+        val tvShowItems = MutableLiveData<List<MovieEntity>>()
 
         remoteDataSource.getTvShows(object : RemoteDataSource.LoadTvShowsCallback {
             override fun onTvShowsLoaded(tvShows: List<TvShowResultsItem>?) {
-                val tvShowList = ArrayList<DataEntity>()
+                val tvShowList = ArrayList<MovieEntity>()
                 if (tvShows != null) {
                     for (response in tvShows) {
                         with(response) {
-                            val tvShow = DataEntity(id, title, voteAverage, posterPath)
+                            val tvShow = MovieEntity(id, title, voteAverage, posterPath)
                             tvShowList.add(tvShow)
                         }
                     }

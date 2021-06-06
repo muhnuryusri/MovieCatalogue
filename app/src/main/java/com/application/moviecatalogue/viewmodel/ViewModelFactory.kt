@@ -3,7 +3,7 @@ package com.application.moviecatalogue.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.application.moviecatalogue.data.source.remote.CatalogueRepository
+import com.application.moviecatalogue.data.CatalogueRepository
 import com.application.moviecatalogue.di.Injection
 
 class ViewModelFactory private constructor(private val catalogueRepository: CatalogueRepository) : ViewModelProvider.NewInstanceFactory(){

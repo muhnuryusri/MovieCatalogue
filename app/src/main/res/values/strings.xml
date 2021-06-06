@@ -14,4 +14,9 @@
     <string name="tvShow_text">TV Show</string>
     <string name="cast_name">Name</string>
     <string name="cast_character">Character</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_movies">Movies</string>
+    <string name="title_tvshows">TV Shows</string>
+    <string name="title_favorites">Favorites</string>
 </resources>

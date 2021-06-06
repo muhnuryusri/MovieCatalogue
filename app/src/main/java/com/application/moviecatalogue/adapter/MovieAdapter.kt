@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.application.moviecatalogue.BuildConfig.IMAGE_URL
-import com.application.moviecatalogue.data.DataCallback
-import com.application.moviecatalogue.data.source.local.entity.DataEntity
+import com.application.moviecatalogue.data.MovieCallback
+import com.application.moviecatalogue.data.source.local.entity.MovieEntity
 import com.application.moviecatalogue.databinding.ItemUserBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class DataAdapter(private val callback: DataCallback) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
-    private val listItems = ArrayList<DataEntity>()
+class MovieAdapter(private val callback: MovieCallback) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+    private val listItems = ArrayList<MovieEntity>()
 
-    fun setData(data: List<DataEntity>) {
+    fun setData(data: List<MovieEntity>) {
         listItems.clear()
         listItems.addAll(data)
         this.notifyDataSetChanged()
@@ -31,18 +31,18 @@ class DataAdapter(private val callback: DataCallback) : RecyclerView.Adapter<Dat
     }
 
     inner class ViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: DataEntity) {
+        fun bind(movie: MovieEntity) {
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(IMAGE_URL + data.poster)
+                    .load(IMAGE_URL + movie.poster)
                     .centerCrop()
                     .apply(RequestOptions().override(290, 410))
                     .into(imgPoster)
-                tvTitle.text = data.title
-                tvScore.text = data.score.toString()
+                tvTitle.text = movie.title
+                tvScore.text = movie.score.toString()
 
                 item.setOnClickListener {
-                    callback.onItemClicked(data)
+                    callback.onItemClicked(movie)
                 }
             }
         }
