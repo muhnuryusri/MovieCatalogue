@@ -33,6 +33,9 @@ interface CatalogueDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE, entity = TvShowEntity::class)
     fun insertTvShow(data: List<TvShowEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = CastEntity::class)
+    fun insertCast(data: List<CastEntity>)
+
     @Update
     fun updateMovie(movie: MovieEntity)
 

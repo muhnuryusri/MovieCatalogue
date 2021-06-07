@@ -20,8 +20,5 @@ data class CastEntity(
         val character: String?,
 
         @ColumnInfo(name = "photo")
-        val photo: String?,
-
-        @ColumnInfo(name = "isFavorite")
-        var isFavorite: Boolean = false
+        val photo: String?
 ) : Parcelable

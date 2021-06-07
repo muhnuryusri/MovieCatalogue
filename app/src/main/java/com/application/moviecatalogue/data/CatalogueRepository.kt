@@ -191,6 +191,7 @@ class CatalogueRepository private constructor(
                     )
                     movieCastList.add(movieCast)
                 }
+                localDataSource.insertCast(movieCastList)
             }
         }.asLiveData()
     }
@@ -217,6 +218,7 @@ class CatalogueRepository private constructor(
                     )
                     tvShowCastList.add(tvShowCast)
                 }
+                localDataSource.insertCast(tvShowCastList)
             }
         }.asLiveData()
     }

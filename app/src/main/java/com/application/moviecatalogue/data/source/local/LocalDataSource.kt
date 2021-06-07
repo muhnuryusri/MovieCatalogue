@@ -30,6 +30,8 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
 
     fun insertTvShow(tvShowList: List<TvShowEntity>) = mCatalogueDao.insertTvShow(tvShowList)
 
+    fun insertCast(castId: List<CastEntity>) = mCatalogueDao.insertCast(castId)
+
     fun updateMovieData(movie: MovieEntity, newState: Boolean) {
         movie.isFavorite = newState
         mCatalogueDao.updateMovieData(movie)
