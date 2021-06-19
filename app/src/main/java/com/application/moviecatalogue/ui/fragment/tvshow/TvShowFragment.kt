@@ -46,6 +46,7 @@ class TvShowFragment : Fragment(), TvShowCallback {
                             when (adapter) {
                                 is TvShowAdapter -> {
                                     listTvShow.data?.let { adapter.setData(it) }
+                                    adapter.submitList(listTvShow.data)
                                     adapter.notifyDataSetChanged()
                                 }
                             }

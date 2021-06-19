@@ -4,7 +4,7 @@ import com.application.moviecatalogue.data.source.local.entity.*
 import com.application.moviecatalogue.data.source.remote.response.*
 
 object DataDummy {
-    fun getMovies(): List<MovieEntity> {
+    fun getDummyMovies(): List<MovieEntity> {
         return listOf(
                 MovieEntity(
                         567189,
@@ -36,7 +36,7 @@ object DataDummy {
         )
     }
 
-    fun getDetailMovie(): MovieEntity {
+    fun getDummyDetailMovie(): MovieEntity {
         return MovieEntity(
                 567189,
                 "Tom Clancy's Without Remorse",
@@ -48,13 +48,13 @@ object DataDummy {
         )
     }
 
-    fun getTvShows(): List<MovieEntity> {
+    fun getDummyTvShows(): List<TvShowEntity> {
         return listOf(
-                MovieEntity(
+                TvShowEntity(
                         88396,
                         "The Falcon and the Winter Soldier",
                         "2021-04-23",
-                        6,
+                        "6",
                         7.9,
                         "Sci-Fi & Fantasy",
                         "Lorem ipsum dolor sit amet",
@@ -62,11 +62,11 @@ object DataDummy {
                         "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
                         true
                 ),
-                MovieEntity(
+                TvShowEntity(
                         88396,
                         "The Falcon and the Winter Soldier",
                         "2021-04-23",
-                        6,
+                        "6",
                         7.9,
                         "Sci-Fi & Fantasy",
                         "Lorem ipsum dolor sit amet",
@@ -74,11 +74,11 @@ object DataDummy {
                         "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
                         true
                 ),
-                MovieEntity(
+                TvShowEntity(
                         88396,
                         "The Falcon and the Winter Soldier",
                         "2021-04-23",
-                        6,
+                        "6",
                         7.9,
                         "Sci-Fi & Fantasy",
                         "Lorem ipsum dolor sit amet",
@@ -89,7 +89,7 @@ object DataDummy {
         )
     }
 
-    fun getDetailTvShow(): TvShowEntity {
+    fun getDummyDetailTvShow(): TvShowEntity {
         return TvShowEntity(
                 88396,
                 "The Falcon and the Winter Soldier",
@@ -101,6 +101,52 @@ object DataDummy {
                 "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
                 "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
                 true
+        )
+    }
+
+    fun getDummyMovieCast(): List<CastEntity> {
+        return listOf(
+                CastEntity(
+                        135651,
+                        "Michael B. Jordan",
+                        "John Kelly",
+                        "/kfcn0yyEdN2aJfVaxW0NIoKVF4J.jpg"
+                ),
+                CastEntity(
+                        478,
+                        "Jamie Bell",
+                        "Robert Ritter",
+                        "/xAfNYOJYOy5ee9PHbBF8Y6xzZ9I.jpg"
+                ),
+                CastEntity(
+                        98772,
+                        "Lauren London",
+                        "Pam Kelly",
+                        "/vfUJtwfux3nwEGWIbrC20LyH8fn.jpg"
+                )
+        )
+    }
+
+    fun getDummyTvShowCast(): List<CastEntity> {
+        return listOf(
+                CastEntity(
+                        53650,
+                        "Anthony Mickie",
+                        "Sam Wilson / Falcon",
+                        "/eZSIDrtTzhvabyjrmIITQLsjx8h.jpg"
+                ),
+                CastEntity(
+                        60898,
+                        "Sebastian Stan",
+                        "James 'Bucky' Barnes / Winter Soldier",
+                        "/nKZgixTbHFXpkzzIpMFdLX98GYh.jpg"
+                ),
+                CastEntity(
+                        84247,
+                        "Emily Vancamp",
+                        "Sharon Carter",
+                        "/zTl2KVglr7D7jnBLjbqe1BbbJiV.jpg"
+                )
         )
     }
 

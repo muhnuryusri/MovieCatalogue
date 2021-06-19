@@ -46,6 +46,7 @@ class MovieFragment : Fragment(), MovieCallback {
                             when (adapter) {
                                 is MovieAdapter -> {
                                     listMovie.data?.let { adapter.setData(it) }
+                                    adapter.submitList(listMovie.data)
                                     adapter.notifyDataSetChanged()
                                 }
                             }

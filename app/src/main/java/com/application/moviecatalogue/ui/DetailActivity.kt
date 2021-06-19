@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.moviecatalogue.BuildConfig.IMAGE_URL
+import com.application.moviecatalogue.R
 import com.application.moviecatalogue.adapter.CastAdapter
 import com.application.moviecatalogue.data.source.local.entity.MovieEntity
 import com.application.moviecatalogue.data.source.local.entity.TvShowEntity
@@ -54,6 +55,11 @@ class DetailActivity : AppCompatActivity() {
                             if (detail.data != null) {
                                 populateDetailMovieData(detail.data)
                             }
+                            setActionButton(detail.data, null)
+                            val state = detail.data?.isFavorite
+                            if (state != null) {
+                                setFavoriteState(state)
+                            }
                         }
                         Status.ERROR -> {
                             Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
@@ -89,6 +95,11 @@ class DetailActivity : AppCompatActivity() {
                         Status.SUCCESS -> {
                             if (detail.data != null) {
                                 populateDetailTvShowData(detail.data)
+                            }
+                            setActionButton(null, detail.data)
+                            val state = detail.data?.isFavorite
+                            if (state != null) {
+                                setFavoriteState(state)
                             }
                         }
                         Status.ERROR -> {
@@ -172,5 +183,38 @@ class DetailActivity : AppCompatActivity() {
 
         binding.rvCast.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvCast.adapter = castAdapter
+    }
+
+
+    private fun setActionButton(movie: MovieEntity?, tvShow: TvShowEntity?) {
+        binding.fab.setOnClickListener {
+            setFavorite(movie, tvShow)
+        }
+    }
+
+    private fun setFavorite(movie: MovieEntity?, tvShow: TvShowEntity?) {
+        if (movie != null) {
+            if (movie.isFavorite) {
+                Toast.makeText(this@DetailActivity, "Removed from Favorite", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@DetailActivity, "Added to Favorite", Toast.LENGTH_SHORT).show()
+            }
+            detailViewModel.setFavoriteMovie(movie)
+        } else if (tvShow != null) {
+            if (tvShow.isFavorite) {
+                Toast.makeText(this@DetailActivity, "Removed from Favorite", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@DetailActivity, "Added to Favorite", Toast.LENGTH_SHORT).show()
+            }
+            detailViewModel.setFavoriteTvShow(tvShow)
+        }
+    }
+
+    private fun setFavoriteState(isFavorite: Boolean) {
+        if (isFavorite) {
+            binding.fab.setImageResource(R.drawable.ic_baseline_favorite)
+        } else {
+            binding.fab.setImageResource(R.drawable.ic_baseline_unfavorite)
+        }
     }
 }

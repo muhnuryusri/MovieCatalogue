@@ -2,7 +2,9 @@ package com.application.moviecatalogue.data.source.local.entity
 
 import android.os.Parcelable
 import androidx.annotation.NonNull
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -20,5 +22,8 @@ data class CastEntity(
         val character: String?,
 
         @ColumnInfo(name = "photo")
-        val photo: String?
+        val photo: String?,
+
+        @ColumnInfo(name = "isFavorite")
+        var isFavorite: Boolean = false
 ) : Parcelable

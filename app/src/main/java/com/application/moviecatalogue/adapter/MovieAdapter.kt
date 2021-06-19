@@ -2,6 +2,8 @@ package com.application.moviecatalogue.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.application.moviecatalogue.BuildConfig.IMAGE_URL
 import com.application.moviecatalogue.data.MovieCallback
@@ -10,7 +12,18 @@ import com.application.moviecatalogue.databinding.ItemUserBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class MovieAdapter(private val callback: MovieCallback) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class MovieAdapter(private val callback: MovieCallback) : PagedListAdapter<MovieEntity, MovieAdapter.ViewHolder>(DIFF_CALLBACK) {
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieEntity>() {
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
     private val listItems = ArrayList<MovieEntity>()
 
     fun setData(data: List<MovieEntity>) {

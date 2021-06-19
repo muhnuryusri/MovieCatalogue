@@ -10,4 +10,12 @@ import com.application.moviecatalogue.vo.Resource
 class DetailViewModel(private val catalogueRepository: CatalogueRepository) : ViewModel() {
     fun getSelectedMovie(movieId: Int): LiveData<Resource<MovieEntity>> = catalogueRepository.getDetailMovie(movieId)
     fun getSelectedTvShow(tvShowId: Int): LiveData<Resource<TvShowEntity>> = catalogueRepository.getDetailTvShow(tvShowId)
+    fun setFavoriteMovie(movie: MovieEntity) {
+        val newState = !movie.isFavorite
+        catalogueRepository.setFavoriteMovie(movie, newState)
+    }
+    fun setFavoriteTvShow(tvShow: TvShowEntity) {
+        val newState = !tvShow.isFavorite
+        catalogueRepository.setFavoriteTvShow(tvShow, newState)
+    }
 }

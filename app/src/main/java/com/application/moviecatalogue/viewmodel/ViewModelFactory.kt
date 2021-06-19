@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.application.moviecatalogue.data.CatalogueRepository
 import com.application.moviecatalogue.di.Injection
+import com.application.moviecatalogue.ui.favorite.FavoriteViewModel
 
 class ViewModelFactory private constructor(private val catalogueRepository: CatalogueRepository) : ViewModelProvider.NewInstanceFactory(){
     companion object {
@@ -33,6 +34,9 @@ class ViewModelFactory private constructor(private val catalogueRepository: Cata
             }
             modelClass.isAssignableFrom(CastViewModel::class.java) -> {
                 CastViewModel(catalogueRepository) as T
+            }
+            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
+                FavoriteViewModel(catalogueRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class :" + modelClass.name)
         }

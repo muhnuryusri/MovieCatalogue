@@ -1,15 +1,14 @@
-package com.application.moviecatalogue.adapter
+package com.application.moviecatalogue.ui.favorite
 
-import android.content.Context
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.application.moviecatalogue.R
-import com.application.moviecatalogue.ui.fragment.movie.MovieFragment
-import com.application.moviecatalogue.ui.fragment.tvshow.TvShowFragment
+import com.application.moviecatalogue.ui.favorite.movie.FavoriteMovieFragment
+import com.application.moviecatalogue.ui.favorite.tvshow.FavoriteTvShowFragment
 
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(private val context: FavoriteFragment, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
         @StringRes
@@ -18,8 +17,8 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : 
 
     override fun getItem(position: Int): Fragment =
         when (position) {
-            0 -> MovieFragment()
-            1 -> TvShowFragment()
+            0 -> FavoriteMovieFragment()
+            1 -> FavoriteTvShowFragment()
             else -> Fragment()
         }
 

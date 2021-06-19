@@ -1,6 +1,7 @@
 package com.application.moviecatalogue.data.source.local
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.application.moviecatalogue.data.source.local.entity.*
 import com.application.moviecatalogue.data.source.local.room.CatalogueDao
 
@@ -12,25 +13,27 @@ class LocalDataSource private constructor(private val mCatalogueDao: CatalogueDa
             INSTANCE ?: LocalDataSource(catalogueDao)
     }
 
-    fun getListMovie(): LiveData<List<MovieEntity>> = mCatalogueDao.getListMovie()
+    fun getListMovie(): DataSource.Factory<Int, MovieEntity> = mCatalogueDao.getListMovie()
 
-    fun getListTvShow(): LiveData<List<TvShowEntity>> = mCatalogueDao.getListTvShow()
+    fun getListTvShow(): DataSource.Factory<Int, TvShowEntity> = mCatalogueDao.getListTvShow()
 
-    fun getListFavoriteMovie(): LiveData<List<MovieEntity>> = mCatalogueDao.getListFavoriteMovie()
+    fun getListFavoriteMovie(): DataSource.Factory<Int, MovieEntity> = mCatalogueDao.getListFavoriteMovie()
 
-    fun getListFavoriteTvShow(): LiveData<List<TvShowEntity>> = mCatalogueDao.getListFavoriteTvShow()
+    fun getListFavoriteTvShow(): DataSource.Factory<Int, TvShowEntity> = mCatalogueDao.getListFavoriteTvShow()
 
     fun getMovieDetailData(movieId: Int): LiveData<MovieEntity> = mCatalogueDao.getMovieDetailData(movieId)
 
     fun getTvShowDetailData(tvShowId: Int): LiveData<TvShowEntity> = mCatalogueDao.getTvShowDetailData(tvShowId)
 
-    fun getCastData(castId: Int): LiveData<List<CastEntity>> = mCatalogueDao.getCastData(castId)
+    fun getCast(): DataSource.Factory<Int, CastEntity> = mCatalogueDao.getCast()
 
     fun insertMovie(movieList: List<MovieEntity>) = mCatalogueDao.insertMovie(movieList)
 
     fun insertTvShow(tvShowList: List<TvShowEntity>) = mCatalogueDao.insertTvShow(tvShowList)
 
-    fun insertCast(castId: List<CastEntity>) = mCatalogueDao.insertCast(castId)
+    fun insertMovieCast(movieCastList: List<CastEntity>) = mCatalogueDao.insertMovieCast(movieCastList)
+
+    fun insertTvShowCast(tvShowMovieCastList: List<CastEntity>) = mCatalogueDao.insertTvShowCast(tvShowMovieCastList)
 
     fun updateMovieData(movie: MovieEntity, newState: Boolean) {
         movie.isFavorite = newState
