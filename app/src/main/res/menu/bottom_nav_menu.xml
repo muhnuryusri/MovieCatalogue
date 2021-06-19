@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_movie"
+        android:title="@string/movie_text"
+        android:fontFamily="@font/inter_regular"
+        android:icon="@drawable/ic_baseline_local_movies_24"/>
+
+    <item
+        android:id="@+id/navigation_tv_show"
+        android:title="@string/tvShow_text"
+        android:fontFamily="@font/inter_regular"
+        android:icon="@drawable/ic_baseline_live_tv_24"/>
+
+    <item
+        android:id="@+id/navigation_favorites"
+        android:title="@string/title_favorites"
+        android:fontFamily="@font/inter_regular"
+        android:icon="@drawable/ic_baseline_favorite"/>
+</menu>
