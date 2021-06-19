@@ -3,9 +3,12 @@ package com.application.moviecatalogue.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.application.moviecatalogue.data.source.local.entity.MovieEntity
 import com.application.moviecatalogue.data.CatalogueRepository
+import com.application.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.application.moviecatalogue.utils.DataDummy
+import com.application.moviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
 import org.junit.Assert.*
@@ -27,7 +30,10 @@ class TvShowViewModelTest {
     private lateinit var tvShowCatalogueRepository: CatalogueRepository
 
     @Mock
-    private lateinit var observer: Observer<List<MovieEntity>>
+    private lateinit var observer: Observer<Resource<PagedList<TvShowEntity>>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<TvShowEntity>
 
     @Before
     fun setUp() {
@@ -36,17 +42,18 @@ class TvShowViewModelTest {
 
     @Test
     fun getListTvShows() {
-        val dummyTvShow = DataDummy.getTvShows()
-        val tvShows = MutableLiveData<List<MovieEntity>>()
-        tvShows.value = dummyTvShow
+        val dummyTvShows = Resource.success(pagedList)
+        `when`(dummyTvShows.data?.size).thenReturn(3)
+        val tvShows = MutableLiveData<Resource<PagedList<TvShowEntity>>>()
+        tvShows.value = dummyTvShows
 
         `when`(tvShowCatalogueRepository.getTvShows()).thenReturn(tvShows)
-        val tvShow = viewModel.getListTvShow().value
+        val movie = viewModel.getListTvShow().value?.data
         verify(tvShowCatalogueRepository).getTvShows()
-        assertNotNull(tvShow)
-        assertEquals(3, tvShow?.size)
+        assertNotNull(movie)
+        assertEquals(3, movie?.size)
 
         viewModel.getListTvShow().observeForever(observer)
-        verify(observer).onChanged(dummyTvShow)
+        verify(observer).onChanged(dummyTvShows)
     }
 }
